@@ -1,12 +1,3 @@
-## How to build
-
-```
-docker build -t conghui/seplib .
-```
-
-## How to run
-
-```
 #!/bin/bash
 
 docker run \
@@ -23,4 +14,3 @@ docker run \
   --volume=`pwd`:/work \
   --workdir=/work \
   conghui/seplib bash
-```
