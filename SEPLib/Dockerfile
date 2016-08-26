@@ -1,4 +1,4 @@
-FROM conghui/su:44R1
+FROM conghui/su
 
 MAINTAINER Conghui He <heconghui@gmail.com>
 
