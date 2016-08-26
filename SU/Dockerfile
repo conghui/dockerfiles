@@ -1,4 +1,4 @@
-FROM centos:7
+FROM conghui/centos
 
 MAINTAINER Conghui He <heconghui@gmail.com>
 
