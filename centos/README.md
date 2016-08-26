@@ -25,3 +25,6 @@ You need to pass your current `uid` and `gid` to `LOCAL_USER_ID` and `LOCAL_GROU
 ```
 docker run -it --rm -e LOCAL_USER_ID=`id -u $USER` -e LOCAL_GROUP_ID=`id -g $USER` -v `pwd`/test:/test myimg bash
 ```
+
+### Reference
+[1] [HANDLING PERMISSIONS WITH DOCKER VOLUMES](https://denibertovic.com/posts/handling-permissions-with-docker-volumes/)
