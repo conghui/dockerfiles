@@ -16,11 +16,9 @@ echo "root:$ROOTPWD" | chpasswd
 
 # create user
 echo "Starting with UID: $USER_ID, GID: $GROUP_ID"
+export HOME=/home/$USER
+mkdir -p ${HOME}
 groupadd -f -g $GROUP_ID $GROUP
 useradd --shell /bin/bash -u $USER_ID -g $GROUP_ID -o -c "Docker User" $USER -M
-mkdir -p /home/$USER
-cp /root/.bash* /home/$USER && chown $USER:$GROUP /home/$USER -R
-
-export HOME=/home/$USER
-
+cp /root/.bash* ${HOME} && chown $USER:$GROUP ${HOME} -R
 exec /usr/local/bin/gosu $USER "$@"
