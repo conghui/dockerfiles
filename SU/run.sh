@@ -20,6 +20,9 @@ function start_container() {
 if [[ $OSTYPE == "linux-gnu" ]]; then
   start_container
 elif [[ $OSTYPE == "darwin"* ]]; then
+  # install socat if necessary
+  hash socat &> /dev/null || brew install socat
+
   echo "opening a TCP port 6000 to read/write from the XQuartz socket"
   socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\" &
   pid=$!
