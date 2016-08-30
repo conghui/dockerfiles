@@ -22,7 +22,7 @@ RUN git clone http://zapad.Stanford.EDU/bob/SEPlib.git /opt/SEP/src && \
       cd /opt/SEP/src && ./configure --prefix=/opt/SEP  --with-su=/opt/SU && \
       cd /opt/SEP/src && make && make install && make clean && \
       cd / && rm -rf /opt/SEP/src && \
-      echo "datapath=/tmp/" > ~/.datapath
+      echo "datapath=stdout" > ~/.datapath
 
 ENV PATH /opt/SEP/bin:$PATH
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh

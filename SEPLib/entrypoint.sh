@@ -20,6 +20,6 @@ export HOME=/home/$USER
 mkdir -p ${HOME}
 groupadd -f -g $GROUP_ID $GROUP
 useradd --shell /bin/bash -u $USER_ID -g $GROUP_ID -o -c "Docker User" $USER -M
-cp /root/.bash* ${HOME} && echo "datapath=/tmp/" > ${HOME}/.datapath && chown $USER:$GROUP ${HOME} -R
+cp /root/.bash* ${HOME} && echo "datapath=stdout" > ${HOME}/.datapath && chown $USER:$GROUP ${HOME} -R
 
 exec /usr/local/bin/gosu $USER "$@"
