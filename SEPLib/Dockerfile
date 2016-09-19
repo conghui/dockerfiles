@@ -16,15 +16,17 @@ RUN yum update -y && yum install -y \
       flex && \
       yum clean all
 
-RUN mkdir -p /opt/SEP
-RUN git clone http://zapad.Stanford.EDU/bob/SEPlib.git /opt/SEP/src && \
-      cd /opt/SEP/src && autoreconf -vif && \
-      cd /opt/SEP/src && ./configure --prefix=/opt/SEP  --with-su=/opt/SU && \
-      cd /opt/SEP/src && make && make install && make clean && \
-      cd / && rm -rf /opt/SEP/src && \
+ENV SEP=/opt/SEP
+ENV SU=/opt/SU
+RUN mkdir -p $SEP
+RUN git clone http://zapad.Stanford.EDU/bob/SEPlib.git $SEP/src && \
+      cd $SEP/src && autoreconf -vif && \
+      cd $SEP/src && ./configure --prefix=$SEP  --with-su=$SU && \
+      cd $SEP/src && make && make install && make clean && \
+      cd / && rm -rf $SEP/src && \
       echo "datapath=stdout" > ~/.datapath
 
-ENV PATH /opt/SEP/bin:$PATH
+ENV PATH $SEP/bin:$PATH
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
